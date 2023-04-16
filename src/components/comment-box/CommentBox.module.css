@@ -1,0 +1,49 @@
+.box {
+	border: 2.5px #ffffff22 solid;
+	border-radius: 5px;
+	padding: 1.5rem 1rem;
+	margin: .5rem auto;
+	background: #ffffff66;
+}
+
+.container {
+	box-shadow: 2px 2px 5px 2px rgba(20, 20, 20, 0.1);
+/*	box-shadow: 1px 1px 5px 2px rgba(90, 90, 90, .1);*/
+	border: 2.5px #ffffff22 solid;
+/*	border: 1px solid #0000ff22;*/
+	border-radius: 5px;
+/*	padding: 1rem;*/
+	margin: .5rem auto;
+	padding: 1.5rem 1rem;
+	display: flex;
+	background: #ffffff99;
+}
+
+.user-info {
+	padding: 0 1rem;
+	text-align: center;
+	box-shadow: 2px 2px 5px 2px rgba(20, 20, 20, 0.1);
+	border: 2.5px #ffffff22 solid;
+}
+
+.user-info a {
+	font-size: 1rem;
+}
+
+.comment-info {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.content {
+	white-space: pre-line; /* Cool! Fix for textarea line breaks*/
+}
+
+.delete {
+	color: #dd3333dd;
+}
+
+.delete:hover {
+	background: #dd3333dd;
+}

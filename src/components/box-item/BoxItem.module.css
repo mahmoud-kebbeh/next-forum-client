@@ -1,0 +1,76 @@
+.box {
+	border: 2.5px #ffffff22 solid;
+	border-radius: 5px;
+	padding: 1.5rem 1rem;
+	margin: .5rem auto;
+	background: #ffffff66;
+}
+
+.container {
+/*	max-width: 75%;*/
+	border: 2.5px #ffffff22 solid;
+	border-radius: 5px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: .5rem auto;
+	padding: 1.5rem 1rem;
+	box-shadow: 2px 2px 5px 2px rgba(20, 20, 20, 0.1);
+	min-height: 7.5rem;
+	background: #ffffff99;
+}
+
+.forum-title, .topic-title {
+	font-size: 1rem;
+}
+
+.forum-title:focus, .topic-title:focus, .last-comment a:focus {
+	color: #000;
+}
+
+.forum-title:hover, .topic-title:hover, .last-comment a:hover {
+	font-size: 1rem;
+	color: #000aaadd;
+	text-shadow: none;
+}
+
+.forum-description {
+	padding: .5rem 0;
+	font-size: 1.2rem;
+	white-space: pre-line; /* Cool! Fix for textarea line breaks*/
+}
+
+.info {
+	border: 2.5px #ffffff22 solid;
+/*	min-width: 25%;*/
+	max-width: 40%;
+	border-radius: 5px;
+	box-shadow: 2px 2px 5px 2px rgba(20, 20, 20, 0.1);
+	display: flex;
+	padding: 1rem 1.5rem;
+	align-items: center;
+	min-width: 20%;
+}
+
+.counts {
+	padding: .5rem 0;
+}
+
+.last-comment {
+/*	text-align: center;*/
+	margin-left: 2rem;
+}
+
+.last-comment a {
+	display: block;
+	font-size: 1rem;
+	overflow: hidden;
+}
+
+.delete {
+	color: #dd3333dd;
+}
+
+.delete:hover {
+	background: #dd3333dd;
+}
