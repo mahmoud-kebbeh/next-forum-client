@@ -253,7 +253,7 @@ export default function Profile({ data }) {
                   <p><Link className={`${data.user.roles.includes("Admin") ? "admin" : data.user.roles.includes("Supermod") || data.user.roles.includes("Mod") ? "staff" : ""}`} href={data.user.path}>{data.user.displayName}</Link> replied to <Link className={`${comment.topic.user.roles.includes("Admin") ? "admin" : comment.topic.user.roles.includes("Supermod") || comment.topic.user.roles.includes("Mod") ? "staff" : ""}`} href={comment.topic.user.path}>{comment.topic.user.displayName}</Link>'s topic in <Link href={comment.topic.path}>{comment.topic.title}</Link>:</p>
                   {comment.content.length > 150 ? (<p>{comment.content.substring(0, 150)}...</p>) : (<p>{comment.content}</p>)}
                   <div className={styles['comment-info']}>
-                    <span>{comment.topic.commentsCount} replies</span>
+                    <span>{comment.topic.commentsCount - 1} replies</span>
                     <span>{formatDistanceToNow(new Date(Number(comment.createdAt)), {
                       addSuffix: true,
                     })
