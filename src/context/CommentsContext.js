@@ -12,10 +12,10 @@ const commentsReducer = (state, action) => {
 			return {
 				comments: [...state.comments, action.payload],
 			};
-			// case "EDIT_COMMENT":
-			// return {
-			// 	comments: [...state.comments, action.payload],
-			// };
+			case "EDIT_COMMENT":
+			return {
+				comments: [...state.comments.filter(comment => comment._id !== action.payload._id), action.payload].sort((previousComment, nextComment) => previousComment.createdAt - nextComment.createdAt),
+			};
 			case "DELETE_COMMENT":
 			return {
 				comments: state.comments.filter(comment => comment._id !== action.payload._id),

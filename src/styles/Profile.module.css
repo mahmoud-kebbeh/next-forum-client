@@ -1,0 +1,153 @@
+.user-card {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	gap: .5em;
+	background: #5599cc22;
+	padding: 2em 1em;
+	margin: 2em 0;
+	border-radius: 5px;
+}
+
+.user-card > div:first-child {
+	display: flex;
+	flex-direction: column;
+	gap: .5em;
+}
+
+.user-card div a {
+	display: inline-block;
+}
+
+.user-picture {
+	object-fit: cover;
+	border-radius: 50%;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+.custom-file-input::before {
+  content: 'Choose an image';
+  display: block;
+  background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 10pt;
+  text-align: center;
+}
+.custom-file-input:hover::before {
+  border-color: black;
+}
+.custom-file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+.btn {
+	width: 25%;
+}
+
+.user-info {
+	display: flex;
+	justify-content: space-around;
+	background: #5599cc22;
+	padding: 2em;
+	margin: 2em;
+	border-radius: 5px;
+}
+
+.user-followers {
+	background: #5599cc22;
+	padding: 1.5em;
+	display: flex;
+	flex-direction: column;
+	gap: 2em;
+}
+
+.user-followers ul {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1em;
+	background: #5599cc22;
+	padding: 1em 0;
+}
+
+@media (max-width: 500px) {
+	.user-followers ul {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+.user-followers ul li {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-items: center;
+	justify-content: center;
+	align-content: center;
+	gap: 1em;
+	font-size: 1em;
+}
+
+@media (max-width: 768px) {
+	.user-followers ul li {
+		font-size: .75em;
+	}
+}
+
+.user-followers ul li a {
+	overflow-x: hidden;
+}
+
+.user-comments {
+	background: #5599cc22;
+	padding: 1.5em;
+	margin: 2em 0;
+	display: flex;
+	flex-direction: column;
+	gap: 2em;
+}
+
+.user-comments ul {
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+	background: #5599cc22;
+	padding: 1em;
+}
+
+.comment {
+	display: flex;
+	flex-direction: column;
+	background: #ffffff66;
+	padding: 1.5em 1em 1em;
+	border-radius: 5px;
+}
+
+.comment p:first-child {
+	font-size: 1.25em;
+	margin-bottom: .25em;
+}
+
+.comment p:nth-child(2) {
+	font-size: .9em;
+	margin-bottom: .75em;
+}
+
+.comment-info {
+	display: flex;
+	gap: 1em;
+	margin-top: .75em;
+}
+
+.comment-info span {
+	color: #0033ffee;
+}

@@ -7,6 +7,8 @@ import { useRouter } from "next/router";
 import useAuthContext from "./../../hooks/useAuthContext.js";
 import useSignup from "./../../hooks/useSignup.js";
 
+import styles from "./../../styles/Auth.module.css";
+
 export default function Signup() {
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
@@ -18,10 +20,11 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const result = await signup(displayName, email, password);
-    if (result) router.push("/");
+    if (result) {
+      dispatch({ type: "LOGIN", payload: result });
 
-    // update the auth context
-    dispatch({ type: "LOGIN", payload: result });
+      router.push("/")
+    };
   };
 
   return (
@@ -35,10 +38,11 @@ export default function Signup() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <main className={styles.main}>
         <h2>Sign up for an account</h2>
         <form onSubmit={handleSubmit}>
           <input
+            className={styles.input}
             type="text"
             placeholder="Display Name"
             name="displayName"
@@ -48,6 +52,7 @@ export default function Signup() {
             required
           />
           <input
+            className={styles.input}
             type="email"
             placeholder="Email"
             name="email"
@@ -57,6 +62,7 @@ export default function Signup() {
             required
           />
           <input
+            className={styles.input}
             type="password"
             placeholder="Password"
             name="password"
@@ -66,7 +72,7 @@ export default function Signup() {
             required
           />
           <button type="submit" disabled={isLoading}>
-            Submit
+            Sign Up
           </button>
         </form>
         {error && <div className="error">{error}</div>}

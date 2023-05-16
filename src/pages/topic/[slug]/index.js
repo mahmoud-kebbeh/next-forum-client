@@ -1,48 +1,75 @@
+import { BASE_URL } from "./../../../../global-variables.js"
+
 import { useEffect } from "react"
 
 import Head from "next/head"
 import Link from "next/link"
 
-import useAuthContext from "./../../../hooks/useAuthContext.js"
+import styles from './../../../styles/Topic.module.css'
+
+// import useAuthContext from "./../../../hooks/useAuthContext.js";
+
 import useCommentsContext from "./../../../hooks/useCommentsContext.js"
 
-import CommentBox from "./../../../components/comment-box/CommentBox.js"
-import Form from "./../../../components/form/Form.js"
-
-const host = process.env.HOST;
+import BoxItem from "./../../../components/BoxItem.js"
+import Form from "./../../../components/Form.js"
 
 export async function getServerSideProps({ params }) {
-  const { data } = await fetch(
-    `${host}?query=query Comments{topics{_id, createdAt, forumId, title, slug, comments{_id, createdAt, content, user{_id, displayName, path, commentsCount}} forum{title, path}}}`,
-    {
+	const { data } = await fetch(
+    `${BASE_URL}/?query=query Topic {
+	    topic(slug: "${params.slug}") {
+	    	_id
+        userId
+	      title
+	      forum {
+	      	title
+	      	path
+	      }
+	      comments(hidden: ${false}, sort: "ASC") {
+	      	_id
+          topicId
+          userId
+	        content
+	        index
+	        createdAt
+	        user {
+            _id
+            commentsCount
+	          displayName
+	          path
+            roles
+            picture
+	        }
+	      }
+	    }
+	  }
+	  `,
+	  {
       headers: {
         "Content-Type": "application/json",
       },
     }
-  ).then((res) => res.json())
-
-  const topic = data.topics.find((topic) => topic.slug === params.slug)
+  ).then(res => res.json())
 
   return {
     props: {
-      params,
-      topic
-    },
+      data
+    }
   }
 }
 
-export default function Topic({ params, topic }) {
+export default function Topic({ data }) {
   const { comments, dispatch } = useCommentsContext()
-  const { user } = useAuthContext();
+  // const { user } = useAuthContext();
 
   useEffect(()=> {
-    const fetchComments = async function () {
-      return dispatch({ type: "GET_COMMENTS", payload: topic.comments })
+    const fetchTopics = function () {
+      return dispatch( { type: "GET_COMMENTS", payload: data.topic.comments } )
     }
-    fetchComments()
+    fetchTopics()
   }, [])
 
-  const title = `NextForum | ${topic.title}`
+  const title = `NextTopic | ${data.topic.title}`
   return (
     <>
       <Head>
@@ -51,23 +78,23 @@ export default function Topic({ params, topic }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {topic && (
-        <>
-          <div className="header">
-            <h2>{topic.title}</h2>
-            <p>Back to <Link href={topic.forum.path}>{topic.forum.title}</Link></p>
-          </div>
+      <main className={styles.main}>
+        <span>Back to <Link href={data.topic.forum.path}>{data.topic.forum.title}</Link></span>
+        <p className={styles.title}>Forum &gt; {data.topic.forum.title} &gt; {data.topic.title}</p>
+        {comments && comments.length > 0 ? (
           <ul>
-          {comments && comments.map(comment => (
-            <li key={comment._id}>
-              <CommentBox comment={comment} />
-            </li>
-          ))
+            {comments.map((comment) => {
+              return (
+                <li key={comment._id} id={comment.index}>
+                  <BoxItem comment={comment} />
+                </li>
+              )
+            })
           }
           </ul>
-          {user && <Form commentContent={true} topicId={topic._id} forumId={topic.forumId}/>}
-        </>
-      )}
+        ) : <h2 className="center">There are no comments to show...</h2>}
+        <Form comment={true} topicId={data.topic._id} />
+      </main>
     </>
   )
 }

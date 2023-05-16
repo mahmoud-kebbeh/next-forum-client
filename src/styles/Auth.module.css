@@ -1,0 +1,21 @@
+.main {
+	padding-top: 2em;
+	max-width: 480px;
+	margin: auto;
+}
+
+.input {
+	display: block;
+/*	box-sizing: border-box;*/
+	width: 100%;
+	height: 3em;
+	margin: .75em 0;
+	padding: .5em;
+	font-size: 1em;
+	border: transparent;
+	border-radius: 5px;
+}
+
+.main div {
+	margin-top: 1em;
+}

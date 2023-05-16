@@ -1,14 +1,23 @@
-import "./../styles/globals.css";
+import './../styles/globals.css'
+
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 import { AuthContextProvider } from "./../context/AuthContext.js"
+
 import { ForumsContextProvider } from "./../context/ForumsContext.js"
 import { TopicsContextProvider } from "./../context/TopicsContext.js"
 import { CommentsContextProvider } from "./../context/CommentsContext.js"
 
-import Layout from "./../components/layout/Layout.js"
+import Layout from "./../components/Layout.js"
+
+const client = new ApolloClient({
+  uri: 'https://next-forum-server.onrender.com/',
+  cache: new InMemoryCache(),
+});
 
 export default function App({ Component, pageProps }) {
   return (
+    <ApolloProvider client={client}>
       <AuthContextProvider initialData={pageProps?.initialData}>
         <ForumsContextProvider>
           <TopicsContextProvider>
@@ -20,5 +29,6 @@ export default function App({ Component, pageProps }) {
           </TopicsContextProvider>
         </ForumsContextProvider>
       </AuthContextProvider>
-  )
+    </ApolloProvider>
+    )
 }

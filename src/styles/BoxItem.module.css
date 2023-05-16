@@ -1,0 +1,331 @@
+.container {
+	border: 2.5px #ffffff22 solid;
+	border-radius: 5px;
+/*	padding: .75em;*/
+	padding: .25em;
+	margin: .5em auto;
+	background: #ffffff66;
+}
+
+.box {
+/*	max-width: 75%;*/
+	border: 2.5px #ffffff22 solid;
+	border-radius: 5px;
+	display: flex;
+	justify-content: space-between;
+/*	align-items: center;*/
+	margin: .25em auto;
+/*	padding: .75em 1.5em;*/
+	padding: .25em .5em;
+	box-shadow: 2px 2px 5px 2px rgba(20, 20, 20, 0.1);
+	background: #ffffff99;
+	min-height: 10em;
+}
+
+.forum-title, .topic-title {
+	font-size: .75em;
+}
+
+.forum-title:focus, .topic-title:focus {
+	color: #000;
+}
+
+.forum-title:hover, .topic-title:hover {
+	font-size: .9em;
+	color: #000aaadd;
+	text-shadow: none;
+}
+
+.forum-description {
+	font-size: .5em;
+	white-space: pre-line; /* Cool! Fix for textarea line breaks*/
+}
+
+@media (min-width: 320px) {
+  .forum-title, .topic-title {
+		font-size: .85em;
+	}
+	.forum-title:hover, .topic-title:hover {
+		font-size: .95em;
+	}
+	.forum-description {
+		font-size: .8em;
+	}
+}
+
+@media (min-width: 500px) {
+  .forum-title, .topic-title {
+		font-size: 1.1em;
+	}
+	.forum-title:hover, .topic-title:hover {
+		font-size: 1.2em;
+	}
+	.forum-description {
+		font-size: .85em;
+	}
+}
+
+@media (min-width: 768px) {
+  .forum-title, .topic-title {
+		font-size: 1.2em;
+	}
+	.forum-title:hover, .topic-title:hover {
+		font-size: 1.3em;
+	}
+	.forum-description {
+		font-size: 1em;
+	}
+}
+
+.forum-info, .topic-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.forum-info div, .topic-info div {
+	min-height: 1em;
+	height: 1.25em;
+	margin: .5em 0;
+}
+
+.topic-info div p {
+	font-size: .75em;
+	transition: all 0.2s linear;
+}
+
+.topic-info div p:hover {
+	font-size: .8em;
+}
+
+.info {
+	border: 2.5px #ffffff22 solid;
+  font-size: .85em;
+/*	min-width: 25%;*/
+/*	width: 20%;*/
+  min-width: calc(30% + 3em);
+	min-height: 6em;
+	margin: auto 0;
+	border-radius: 5px;
+	box-shadow: 2px 2px 5px 2px rgba(20, 20, 20, 0.1);
+	display: flex;
+	padding: .5em;
+	align-items: center;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+@media (min-width: 320px) {
+	.box {
+		padding: .5em;
+	}
+  .info {
+    min-width: calc(30% + 3em);
+	  font-size: .75em;
+  }
+}
+
+@media (min-width: 500px) {
+  .info {
+    min-width: calc(22.5% + 2.25em);
+	  font-size: .9em;
+  }
+}
+
+@media (min-width: 768px) {
+	.box {
+		padding: .75em;
+	}
+  .info {
+    min-width: calc(25% + 2.25em);
+	  font-size: 1em;
+  }
+}
+
+.counts {
+	font-size: .75em;
+}
+
+.last-comment {
+/*	text-align: center;*/
+	padding-left: .5em;
+	margin-left: .5em;
+	border-left: #999 solid 1px;
+}
+
+.last-comment div {
+	height: 1.5em;
+	display: flex;
+	align-items: center;
+}
+
+.last-comment a {
+	font-size: .9em;
+}
+
+.last-comment a:hover {
+	font-size: 1em;
+}
+
+.comment {
+/*	justify-content: left;*/
+/*	gap: 2rem;*/
+}
+
+.user-info {
+	width: 35%;
+	margin: 0 1em 0 .5em;
+	text-align: center;
+}
+
+@media (min-width: 320px) {
+	.user-info {
+		width: 30%;
+	}
+}
+
+@media (min-width: 768px) {
+	.user-info {
+		width: 20%;
+	}
+}
+
+.user-box {
+	display: flex;
+	flex-direction: column;
+	gap: .5em;
+	padding: .25em 0;
+/*	box-shadow: 2px 2px 5px 2px rgba(20, 20, 20, 0.1);*/
+/*	border: 2.5px #ffffff22 solid;*/
+	justify-content: center;
+}
+
+.user-info a {
+	font-size: 1em;
+}
+
+.user-picture {
+	object-fit: cover;
+	border-radius: 50%;
+	width: 25px;
+	height: 25px;
+}
+
+@media (min-width: 320px) {
+	.user-picture {
+		width: 32.5px;
+		height: 32.5px;
+	}
+}
+
+@media (min-width: 768px) {
+	.user-picture {
+		width: 60px;
+		height: 60px;
+	}
+}
+
+.comment-info {
+	display: flex;
+	flex-direction: column;
+	gap: .75em;
+	padding: .75em .5em .5em 1em;
+	width: 100%;
+/*	border: 1px solid #ccc;*/
+/*	border-radius: 5px;*/
+}
+
+.comment-info div {
+	height: 10px;
+}
+
+.comment-info .timestamp {
+	color: #0033ffaa;
+	transition: all 0.2s linear;
+	font-size: .8em;
+}
+
+.comment-info .timestamp:hover {
+	color: #0033ffee;
+	font-size: 1em;
+}
+
+.content {
+	white-space: pre-line; /* Cool! Fix for textarea line breaks*/
+	word-break: break-word;
+	font-size: 1.25em;
+	padding: .25em 1em .5em 0;
+}
+
+.buttons {
+	display: flex;
+	gap: 10px;
+}
+
+.buttons .update {
+	color: #33dd33dd;
+/*	color: #33dd99ee;*/
+	background: #fff;
+}
+
+.buttons .update:hover {
+	color: #fff;
+	background: #33dd33dd;
+/*	background: #33dd99ee;*/
+}
+
+.buttons .delete {
+	color: #dd3333dd;
+/*	color: #dd3399ee;*/
+	background: #fff;
+}
+
+.buttons .delete:hover {
+	color: #fff;
+	background: #dd3333dd;
+/*	background: #dd3399ee;*/
+}
+
+.buttons .save {
+	color: #006699dd;
+/*	color: #33dd99ee;*/
+	background: #fff;
+}
+
+.buttons .save:hover {
+	color: #fff;
+	background: #006699dd;
+/*	background: #33dd99ee;*/
+}
+
+.buttons .cancel {
+	color: #dd33aadd;
+/*	color: #dd3399ee;*/
+	background: #fff;
+}
+
+.buttons .cancel:hover {
+	color: #fff;
+	background: #dd33aadd;
+/*	background: #dd3399ee;*/
+}
+
+.input {
+	display: block;
+	border: none;
+	border-radius: 5px;
+	outline: none;
+	color: #000;
+	background: #fff;
+	width: 100%;
+	padding: .75rem .5rem;
+	margin: .5rem 0;
+	font-size: 1.4em;
+	resize: none;
+	transition: background .2s linear;
+	box-sizing: border-box;
+}
+
+.input.saving {
+	background: #33dd3333;
+}

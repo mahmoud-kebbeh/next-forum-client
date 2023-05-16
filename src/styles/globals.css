@@ -14,123 +14,159 @@
 }
 
 * {
-	padding: 0;
-	margin: 0;
-/*	box-sizing: border-box;*/
-	color: #333;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: #333;
+/*  font-size: calc(1.2vw + .15rem);*/
 }
-/*
+
 :root {
-	height: 50%;
-}*/
+/*  height: 50%;*/
+/*  --fs-xl: clamp(3.5rem, 12vw + 1rem, 12rem);*/
+}
 
 html {
-/*	font-size: 62.5%;*/
-	font-size: 10px;
+/*  font-size: 62.5%;*/
+  font-size: 10px;
 }
 
 @media (min-width: 320px) {
-	html {
-		font-size: 12px;
-	}
+  html {
+    font-size: 12.5px;
+  }
+}
+
+@media (min-width: 500px) {
+  html {
+    font-size: 15px;
+  }
 }
 
 @media (min-width: 768px) {
   html {
-		font-size: 16px;
+    font-size: 18px;
   }
 }
 
 body {
-	font-family: Quicksand, sans-serif;
-	width: 100%;
-	min-height: 100vh;
-/*	background-color: #66A3F799;*/
-	background: radial-gradient(at top left, #96C3F799 0%, #66A3F799 100%);
-/*	background-color: #caf1de66;*/
-/*	background: radial-gradient(at top left, #7dd56fc9 50%, #28b487c9 100%);*/
-	cursor: default;
-	position: relative;
-	display: flex;
+  font-family: Quicksand, sans-serif;
+  width: 100%;
+  min-height: 100vh;
+/*  background-color: #66A3F799;*/
+  background: radial-gradient(at top left, #96C3F744 0%, #66A3F744 100%);
+/*  background-color: #caf1de66;*/
+/*  background: radial-gradient(at top left, #7dd56fc9 50%, #28b487c9 100%);*/
+  cursor: default;
+  position: relative;
+  display: flex;
   flex-direction: column;
+/*  font-size: 62.5%;*/
+/*  font-size: clamp(10px, calc(1.5vw + .05rem), 20px);*/
+/*  font-size: calc(1.5vw + .05rem);*/
 }
 
 a {
-	text-decoration: none;
-	font-weight: bold;
-	transition: all 0.125s linear;
-	color: #000666dd;
-	font-size: 1.6rem;
-	padding: .5em 0;
-	text-shadow: 0px 0px 1px rgba(0, 0, 0, .25);
-	transition: all 0.2s linear;
+  text-decoration: none;
+  font-weight: bold;
+  color: #000666dd;
+  text-shadow: 0px 0px 1px rgba(0, 0, 0, .25);
+  transition: all 0.2s linear;
 }
 
 a:focus {
-	color: #000;
+  color: #000;
 }
 
 a:hover {
-	color: #000ccc;
-	text-shadow: none;
+  color: #000ccc;
+  text-shadow: none;
 }
 
 li {
-	list-style-type: none;
+  list-style-type: none;
 }
 
 button {
-/*	font-size: 1.5rem;*/
-	background: #fff;
-	color: #000666dd;
-	cursor: pointer;
-	outline: none;
-	border: none;
-	border-radius: 5px;
-/*	padding: .75em;*/
-	width: 100%;
-	box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, .25);
-	transition: all .25s linear;
-	font-weight: bold;
-	font-size: 1rem;
-	padding: .5em;
+/*  font-size: 1.5rem;*/
+  background: #fff;
+  display: block;
+  color: #000666dd;
+  cursor: pointer;
+/*  outline: none;*/
+  border: none;
+  border-radius: 5px;
+/*  padding: .75em;*/
+  width: 100%;
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, .15);
+  transition: all .2s linear;
+  font-weight: bold;
+  font-size: .75em;
+  padding: .5em;
+  margin: 0 auto;
 }
 
 button:hover {
-	background: #000666dd;
-	color: #fff;
+  background: #000666dd;
+  color: #fff;
 }
 
 button:active {
-	box-shadow: none;
+  box-shadow: none;
+}
+
+button:disabled {
+  background: #dddddd;
+  color: #8f8f8f;
+  opacity: 0.25;
+  border: none;
+  cursor: not-allowed;
 }
 
 hr {
-	margin: 2em 0;
+  margin: 2em 0;
 }
 
 /*h2 {
-	margin: 1em 0;
+  margin: 1em 0;
 }*/
 
 main {
-	margin: 2em 0 5em;
+  margin: 2em 0 5em;
 }
 
 main div.header {
-	display: flex;
-	justify-content: space-between;
-	margin: 1rem 0;
-	padding: 1rem 0;
-	border-bottom: 1px solid #0000ff22;
+  display: flex;
+  justify-content: space-between;
+  margin: 1em 0;
+  padding: 1em 0;
+  border-bottom: 1px solid #0000ff22;
 }
 
 main ul {
-	background-color: #ffffff66;
-/*	background-color: #9a61de33;*/
-/*	background: radial-gradient(at top left, #cc50ccc9 50%, #ccff00 100%);*/
-	box-shadow: 0px 0px 5px 5px #66A3F733;
-	border: 1px solid #66A3F799;
-	border-radius: 5px;
-	padding: 2rem;
+  background-color: #ffffff66;
+/*  background-color: #9a61de33;*/
+/*  background: radial-gradient(at top left, #cc50ccc9 50%, #ccff00 100%);*/
+  box-shadow: 0px 0px 3px 3px #66A3F711;
+  border: 1px solid #66A3F766;
+  border-radius: 5px;
+  padding: 1em .5em;
+}
+
+.center {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.admin, .error {
+  color: red;
+}
+
+.staff {
+  color: #33dd33dd;
+}
+
+.center {
+  margin: 0 auto;
+  text-align: center;
 }

@@ -1,3 +1,5 @@
+import { BASE_URL } from "./../../global-variables.js";
+
 import { useState } from "react";
 
 export default function useSignup() {
@@ -9,12 +11,13 @@ export default function useSignup() {
     setError(false);
 
     const requestBody = {
-      query: `mutation Signup{signup(displayName: "${displayName}", email: "${email}", password: "${password}"){_id, displayName, path}}`,
+      query: `mutation Signup{signup(displayName: "${displayName}", email: "${email}", password: "${password}"){_id, displayName, path, roles}}`,
     }
 
-    const res = await fetch("https://next-forum-server.onrender.com", {
+    const res = await fetch(BASE_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      credentials: "include",
       body: JSON.stringify(requestBody),
     });
 
@@ -22,14 +25,15 @@ export default function useSignup() {
 
     if (data.errors) {
       setIsLoading(false);
-      setError(data.errors[0].extensions.originalError ? data.errors[0].extensions.originalError.message : data.errors[0].message);
+      setError(data.errors[0].message);
       return
     }
 
     setIsLoading(false);
     setError(false);
     // save the user to local storage
-    localStorage.setItem("user", JSON.stringify(data.data.signup));
+    localStorage.setItem('user', JSON.stringify(data.data.signup));
+    // localStorage.setItem("user", JSON.stringify(data.data.signup));
 
     return data.data.signup;
   };

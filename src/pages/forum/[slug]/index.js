@@ -1,48 +1,82 @@
+import { BASE_URL } from "./../../../../global-variables.js"
+
 import { useEffect } from "react"
 
 import Head from "next/head"
 import Link from "next/link"
 
+import styles from './../../../styles/Forum.module.css'
+
+// import useAuthContext from "./../../../hooks/useAuthContext.js";
+
 import useTopicsContext from "./../../../hooks/useTopicsContext.js"
-import useAuthContext from "./../../../hooks/useAuthContext.js";
 
-import BoxItem from "./../../../components/box-item/BoxItem.js"
-import Form from "./../../../components/form/Form.js"
-
-const host = process.env.HOST;
+import BoxItem from "./../../../components/BoxItem.js"
+import Form from "./../../../components/Form.js"
 
 export async function getServerSideProps({ params }) {
-  const { data } = await fetch(
-    `${host}?query=query Topics{forums{_id, title, description, slug, topics{_id, createdAt, title, path, commentsCount, user{displayName, path} comments(commentsLimit: 1){createdAt, index, user{displayName, path}}}}}`,
-    {
+	const { data } = await fetch(
+    `${BASE_URL}/?query=query Forum {
+	    forum(slug: "${params.slug}") {
+	    	_id
+	      title
+	      description
+	      slug
+	      topics(hidden: ${false}, sort: "DESC") {
+	      	_id
+          commentsCount
+	      	title
+	        path
+          userId
+          user {
+            _id
+            displayName
+            path
+            roles
+            picture
+          }
+	      	comments(commentsLimit: 1, hidden: ${false}, sort: "DESC") {
+		        content
+		        index
+		        createdAt
+		        user {
+              _id
+		          displayName
+		          path
+              roles
+              picture
+		        }
+		      }
+	      }
+	    }
+	  }
+	  `,
+	  {
       headers: {
         "Content-Type": "application/json",
       },
     }
-  ).then((res) => res.json())
-
-  const forum = data.forums.find((forum) => forum.slug === params.slug)
+  ).then(res => res.json())
 
   return {
     props: {
-      params,
-      forum,
-    },
+      data
+    }
   }
 }
 
-export default function Forum({ params, forum }) {
+export default function Forum({ data }) {
   const { topics, dispatch } = useTopicsContext()
-  const { user } = useAuthContext();
+  // const { user } = useAuthContext();
 
   useEffect(()=> {
     const fetchTopics = function () {
-      return dispatch( { type: "GET_TOPICS", payload: forum.topics } )
+      return dispatch( { type: "GET_TOPICS", payload: data.forum.topics } )
     }
     fetchTopics()
   }, [])
 
-  const title = `NextForum | ${forum.title}`
+  const title = `NextForum | ${data.forum.title}`
   return (
     <>
       <Head>
@@ -51,29 +85,22 @@ export default function Forum({ params, forum }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {topics && (
-        <ul>
-          {topics.map((topic) => {
-            return (
-              <li key={topic._id}>
-                <BoxItem
-                  topic={topic}
-                  user={topic.comments[0] && topic.comments[0].user}
-                  comment={topic.comments[0]}
-                  commentLink={topic.path}
-                />
-              </li>
-            )
-          })}
-        </ul>
-      )}
-      {user &&
-      (<>
-        <hr />
-        <h2 id="test">Add a new topic</h2>
-        <Form topicTitle={true} topicContent={true} forumId={forum._id} />
-      </>)
-      }
+      <main className={styles.main}>
+        <span>Back to <Link href="/">Home</Link></span>
+        <p className={styles.title}>Forum &gt; {data.forum.title}</p>
+        {topics && topics.length > 0 ? (
+          <ul>
+            {topics.map((topic) => {
+              return (
+                <li key={topic._id}>
+                  <BoxItem topic={topic} />
+                </li>
+              )
+            })}
+          </ul>
+        ) : <h2 className="center">There are no topics to show...</h2>}
+        <Form topic={true} forumId={data.forum._id} />
+      </main>
     </>
   )
 }
