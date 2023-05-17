@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://next-forum-server.onrender.com';
+export const BASE_URL = 'https://tense-hare-crown.cyclic.app/';
