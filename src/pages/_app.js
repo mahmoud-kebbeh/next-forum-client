@@ -11,7 +11,7 @@ import { CommentsContextProvider } from "./../context/CommentsContext.js"
 import Layout from "./../components/Layout.js"
 
 const client = new ApolloClient({
-  uri: 'https://tense-hare-crown.cyclic.app/',
+  uri: 'https://next-forum-server.onrender.com/',
   cache: new InMemoryCache(),
 });
 
