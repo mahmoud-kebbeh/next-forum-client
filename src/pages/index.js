@@ -15,6 +15,15 @@ import BoxItem from "./../components/BoxItem.js"
 import Form from "./../components/Form.js"
 
 export async function getServerSideProps(ctx) {
+  await fetch('https://next-forum-client.vercel.app/');
+
+  // Fetch the link every ~14.8 minutes (300000 milliseconds)
+  setInterval(() => {
+    fetch('https://next-forum-server.onrender.com/')
+      .then(res => res.text())
+      .then(body => console.log("fetched successfully"))
+      .catch(err => console.error(err));
+  }, 3 * 290000);
   const { data } = await fetch(`${BASE_URL}/?query=query Forums { forums(hidden: false) { _id, index, title, description, path, topicsCount, commentsCount, topics(topicsLimit: 1, hidden: false, sort: "DESC") { title, path, comments(commentsLimit: 1, hidden: false, sort: "DESC") { content, index, createdAt, user { displayName, path, roles, picture } } } } }`,
   {
     headers: { "Content-Type": "application/json" },
